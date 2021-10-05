@@ -52,6 +52,8 @@ class QueueHandler implements LambdaEventHandler
 
             $consoleKernel = static::$app->make(Kernel::class);
 
+            echo json_encode($event['Records'][0]);
+
             $consoleInput = new StringInput(
                 'vapor:work '.rtrim(base64_encode(json_encode($event['Records'][0])), '=').' '.$commandOptions.' --no-interaction'
             );
